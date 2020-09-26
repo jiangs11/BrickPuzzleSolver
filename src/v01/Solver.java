@@ -62,6 +62,73 @@ public class Solver {
 		return newPuzzle;
 	}
 	
+	public Puzzle placePiece2A(int startX, int startY, Puzzle puzzle) {
+		Puzzle newPuzzle = puzzle;
+		int[][] board = newPuzzle.getBoard();
+		boolean valid = true;
+		
+		//checks if the piece can fit in the location
+		valid = checkPiece2A(startX, startY, puzzle);
+		
+		//places piece in that location
+		if(valid) {
+			board[startX][startY] = 2;
+			board[startX][startY+1] = 2;
+			board[startX-1][startY+1] = 2;
+			board[startX-1][startY+2] = 2;
+			board[startX-2][startY+2] = 2;
+			board[startX-2][startY+3] = 2;
+			
+		}
+		
+		
+		newPuzzle.setBoard(board);
+		return newPuzzle;
+	}
+	
+	public boolean checkPiece2A(int startX, int startY, Puzzle puzzle) {
+		Puzzle newPuzzle = puzzle;
+		int[][] board = newPuzzle.getBoard();
+		boolean valid = true;
+		int height = puzzle.getHeight();
+		int width = puzzle.getWidth();
+		int bottomBound = startX;
+		int topBound = startX - 2;
+		int leftBound = startY;
+		int rightBound = startY + 3;
+		
+		//checks if piece fits in horizontal bounds of the puzzle
+		for(int i = leftBound; valid && i < rightBound; i++) {
+			if(i < 0 || i >= width) {
+				valid = false;
+			}
+		}
+		
+		//checks if piece fits in vertical bounds of the puzzle
+		for(int i = topBound; valid && i < bottomBound; i++) {
+			if(i < 0 || i >= height) {
+				valid = false;
+			}
+		}
+		
+		//checks if the location is empty of other pieces
+		if(valid)
+		{
+			if((board[startX][startY] == 0) && (board[startX][startY+1] == 0) && (board[startX-1][startY+1] == 0) &&
+			(board[startX-1][startY+2] == 0) && (board[startX-2][startY+2] == 0) && (board[startX-2][startY+3] == 0)) {
+		
+				valid = true;
+			
+			}
+			else
+				valid = false;
+		}
+		
+		return valid;
+		
+	}
+	
+	
 	/**
 	 * Checks if piece 4A can fit into the puzzle.
 	 * 
