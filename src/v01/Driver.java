@@ -6,9 +6,14 @@ public class Driver {
 		Puzzle puzzle2 = new Puzzle(6,6);
 		Solver solver = new Solver();
 		
+		
 		puzzle2 = buildPuzzle2(puzzle2);
 		
-		solver.placePiece2A(3, 0, puzzle2);
+		int x = 1;
+		int y = 2;
+		if(solver.checkPiece4A(x, y, puzzle2)) {
+			puzzle2 = solver.placePiece4A(x, y, puzzle2);
+		}
 		
 		
 		displayPuzzle(puzzle2);
