@@ -9,12 +9,18 @@ public class Driver {
 		
 		puzzle2 = buildPuzzle2(puzzle2);
 		
-		int x = 1;
-		int y = 2;
+		int x = 5;
+		int y = 3;
+		/*
 		if(solver.checkPiece4A(x, y, puzzle2)) {
 			puzzle2 = solver.placePiece4A(x, y, puzzle2);
 		}
+		*/
 		
+		//solver.placePiece2A(3, 0, puzzle2);
+		//solver.placePiece1(0, 5, puzzle2);
+		
+		solver.placePiece2B(3, 1, puzzle2);
 		
 		displayPuzzle(puzzle2);
 	}
