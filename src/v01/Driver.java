@@ -6,7 +6,7 @@ public class Driver {
 		Puzzle puzzle2 = new Puzzle(6,6);
 		Solver solver = new Solver();
 		
-		buildPuzzle2(puzzle2);
+		puzzle2 = buildPuzzle2(puzzle2);
 		
 		
 		displayPuzzle(puzzle2);
@@ -34,10 +34,10 @@ public class Driver {
 	}
 	
 	/**
-	 * Builds the first puzzle.
+	 * Builds the second puzzle.
 	 * 
 	 * @param puzzle The puzzle being built.
-	 * @return The board of the puzzle being built.
+	 * @return The second puzzle.
 	 */
 	private static Puzzle buildPuzzle2(Puzzle puzzle) {
 		Puzzle newPuzzle = puzzle;
