@@ -22,12 +22,12 @@ public class Solver {
 	}
 	
 	/**
+	 * Places piece 1 into the puzzle.
 	 * 
-	 * 
-	 * @param startX
-	 * @param startY
-	 * @param puzzle
-	 * @return
+	 * @param startX The bottom left x index of the piece.
+	 * @param startY The bottom left y index of the piece.
+	 * @param puzzle The puzzle which the piece is being added to.
+	 * @return Returns the puzzle which had a piece added to it.
 	 */
 	private Puzzle placePiece1(int startX, int startY, Puzzle puzzle) {
 		Puzzle newPuzzle = puzzle;
@@ -62,6 +62,14 @@ public class Solver {
 		return newPuzzle;
 	}
 	
+	/**
+	 * Checks if piece 4A can fit into the puzzle.
+	 * 
+	 * @param startX The bottom left x index of the piece.
+	 * @param startY The bottom left y index of the piece.
+	 * @param puzzle The puzzle which has a piece being checked.
+	 * @return True if that is a valid location for the piece.
+	 */
 	public boolean checkPiece4A(int startX, int startY, Puzzle puzzle) {
 		int[][] board = puzzle.getBoard();
 		boolean valid = true;
