@@ -6,7 +6,7 @@ public class Driver {
 		Puzzle puzzle2 = new Puzzle(6,6);
 		Solver solver = new Solver();
 		
-		puzzle2.setBoard(buildPuzzle2(puzzle2.getBoard()));
+		buildPuzzle2(puzzle2);
 		
 		
 		displayPuzzle(puzzle2);
@@ -39,8 +39,9 @@ public class Driver {
 	 * @param puzzle The puzzle being built.
 	 * @return The board of the puzzle being built.
 	 */
-	private static int[][] buildPuzzle2(int[][] board) {
-		int[][] newBoard = board;
+	private static Puzzle buildPuzzle2(Puzzle puzzle) {
+		Puzzle newPuzzle = puzzle;
+		int[][] newBoard = newPuzzle.getBoard();
 		
 		newBoard[0][0] = 9;
 		newBoard[0][5] = 9;
@@ -49,7 +50,9 @@ public class Driver {
 		newBoard[4][0] = 9;
 		newBoard[4][5] = 9;
 		
-		return newBoard;
+		newPuzzle.setBoard(newBoard);
+		
+		return newPuzzle;
 	}
 	
 	
