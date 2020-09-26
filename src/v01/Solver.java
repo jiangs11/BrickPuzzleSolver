@@ -62,7 +62,7 @@ public class Solver {
 		return newPuzzle;
 	}
 	
-<<<<<<< HEAD
+	
 	/**
 	 * 
 	 * 
@@ -130,9 +130,8 @@ public class Solver {
 		newPuzzle.setBoard(board);
 		return newPuzzle;
 	}
-=======
+
 	//piece2A
->>>>>>> branch 'master' of https://github.com/jiangs11/BrickPuzzleSolver.git
 	
 	private boolean checkNullStart(int startX, int startY, Puzzle puzzle) {
 		boolean valid = true;
