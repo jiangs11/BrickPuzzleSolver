@@ -61,10 +61,6 @@ public class Solver {
 
 		return newPuzzle;
 	}
-<<<<<<< HEAD
-=======
-	
->>>>>>> branch 'master' of https://github.com/jiangs11/BrickPuzzleSolver.git
 	
 	/**
 	 * Places piece 4A into the puzzle.
@@ -149,13 +145,7 @@ public class Solver {
 		newPuzzle.setBoard(board);
 		return newPuzzle;
 	}
-<<<<<<< HEAD
 
-=======
-
-	//piece2A
->>>>>>> branch 'master' of https://github.com/jiangs11/BrickPuzzleSolver.git
-	
 	private boolean checkNullStart(int startX, int startY, Puzzle puzzle) {
 		boolean valid = true;
 		int height = puzzle.getHeight();
