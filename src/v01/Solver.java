@@ -62,7 +62,7 @@ public class Solver {
 		return newPuzzle;
 	}
 	
-	private boolean checkPiece4A(int startX, int startY, Puzzle puzzle) {
+	public boolean checkPiece4A(int startX, int startY, Puzzle puzzle) {
 		int[][] board = puzzle.getBoard();
 		boolean valid = true;
 		int height = puzzle.getHeight();
@@ -70,7 +70,7 @@ public class Solver {
 		int x = startX;
 		int y = startY;
 		int leftBoundIndex = x-1;
-		int topBoundIndex = y+2;
+		int topBoundIndex = y-2;
 		int rightBoundIndex = x+1;
 		int botBoundIndex = y;
 		
@@ -127,7 +127,7 @@ public class Solver {
 	 * @param puzzle The puzzle which the piece is being added to.
 	 * @return Returns the puzzle which had a piece added to it.
 	 */
-	private Puzzle placePiece4A(int startX, int startY, Puzzle puzzle) {
+	public Puzzle placePiece4A(int startX, int startY, Puzzle puzzle) {
 		Puzzle newPuzzle = puzzle;
 		int[][] board = newPuzzle.getBoard();
 		boolean valid = true;
