@@ -9,7 +9,6 @@ public class Driver {
 		puzzle2 = buildPuzzle2(puzzle2);
 		
 		//asfhi
-		//sfdsdfsdf
 		displayPuzzle(puzzle2);
 	}
 	
