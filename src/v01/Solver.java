@@ -68,7 +68,7 @@ public class Solver {
 	 * @param startX The bottom left x index of the piece.
 	 * @param startY The bottom left y index of the piece.
 	 * @param puzzle The puzzle which the piece is being added to.
-	 * @return
+	 * @return Returns the puzzle which had a piece added to it.
 	 */
 	private Puzzle placePiece4A(int startX, int startY, Puzzle puzzle) {
 		Puzzle newPuzzle = puzzle;
