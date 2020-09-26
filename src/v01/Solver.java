@@ -62,26 +62,17 @@ public class Solver {
 		return newPuzzle;
 	}
 	
-	/**
-	 * Places piece 4A into the puzzle.
-	 * 
-	 * @param startX The bottom left x index of the piece.
-	 * @param startY The bottom left y index of the piece.
-	 * @param puzzle The puzzle which the piece is being added to.
-	 * @return Returns the puzzle which had a piece added to it.
-	 */
-	private Puzzle placePiece4A(int startX, int startY, Puzzle puzzle) {
-		Puzzle newPuzzle = puzzle;
-		int[][] board = newPuzzle.getBoard();
+	private boolean checkPiece4A(int startX, int startY, Puzzle puzzle) {
+		int[][] board = puzzle.getBoard();
 		boolean valid = true;
 		int height = puzzle.getHeight();
 		int width = puzzle.getWidth();
-		int leftBoundIndex = startX-1;
-		int topBoundIndex = startY+2;
-		int rightBoundIndex = startX+1;
-		int botBoundIndex = startY;
 		int x = startX;
 		int y = startY;
+		int leftBoundIndex = x-1;
+		int topBoundIndex = y+2;
+		int rightBoundIndex = x+1;
+		int botBoundIndex = y;
 		
 		/* Check if the piece can be placed.
 		   1st check if the piece will ever go out of bounds. */
@@ -124,28 +115,45 @@ public class Solver {
 				valid = false;
 			}
 		}
-
-		/* If the location of the piece is valid, 
-		 * place the piece. */
-		if(valid) {
-			/* Bottom left */
-			board[y][x] = 4;
-			/* Bottom right */
-			board[y][x+1] = 4;
-			/* Mid left */
-			board[y-1][x-1] = 4;
-			/* Mid right */
-			board[y-1][x] = 4;
-			/* Top left */
-			board[y-2][x] = 4;
-			/* Top right */
-			board[y-2][x+1] = 4;
-		}
 		
+		return valid;
+	}
+	
+	/**
+	 * Places piece 4A into the puzzle.
+	 * 
+	 * @param startX The bottom left x index of the piece.
+	 * @param startY The bottom left y index of the piece.
+	 * @param puzzle The puzzle which the piece is being added to.
+	 * @return Returns the puzzle which had a piece added to it.
+	 */
+	private Puzzle placePiece4A(int startX, int startY, Puzzle puzzle) {
+		Puzzle newPuzzle = puzzle;
+		int[][] board = newPuzzle.getBoard();
+		boolean valid = true;
+		int x = startX;
+		int y = startY;
+
+		/* Place the piece. */
+		
+		/* Bottom left */
+		board[y][x] = 4;
+		/* Bottom right */
+		board[y][x+1] = 4;
+		/* Mid left */
+		board[y-1][x-1] = 4;
+		/* Mid right */
+		board[y-1][x] = 4;
+		/* Top left */
+		board[y-2][x] = 4;
+		/* Top right */
+		board[y-2][x+1] = 4;
+
+
 		newPuzzle.setBoard(board);
 		return newPuzzle;
 	}
-
+	
 	private boolean checkNullStart(int startX, int startY, Puzzle puzzle) {
 		boolean valid = true;
 		int height = puzzle.getHeight();
