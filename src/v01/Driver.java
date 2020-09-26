@@ -8,6 +8,8 @@ public class Driver {
 		
 		puzzle2 = buildPuzzle2(puzzle2);
 		
+		solver.placePiece2A(2, 5, puzzle2);
+		
 		
 		displayPuzzle(puzzle2);
 	}

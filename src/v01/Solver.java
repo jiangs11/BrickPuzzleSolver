@@ -17,7 +17,7 @@ public class Solver {
 		int[][] board = solved.getBoard();
 		
 		
-		
+		solved.setBoard(board);
 		return solved;
 	}
 	
@@ -62,18 +62,61 @@ public class Solver {
 		return newPuzzle;
 	}
 	
-	private Puzzle placePiece2A(int startX, int startY, Puzzle puzzle) {
+
+	 Puzzle placePiece2A(int startX, int startY, Puzzle puzzle) {
 		Puzzle newPuzzle = puzzle;
 		int[][] board = newPuzzle.getBoard();
 		boolean valid = true;
 		int height = puzzle.getHeight();
 		int width = puzzle.getWidth();
+		int bottomBound = startX;
+		int topBound = startX - 2;
+		int leftBound = startY;
+		int rightBound = startY + 3;
+		
+
+		for(int i = leftBound; valid && i < rightBound; i++) {
+			if(i < 0 || i >= width) {
+				valid = false;
+			}
+		}
+		
+		//doesnt work right now
+		for(int i = bottomBound; valid && i < topBound; i--) {
+			if(i < 0 || i >= height) {
+				valid = false;
+			}
+		}
+		
+		if(valid)
+		{
+		if((board[startX][startY] == 0) && (board[startX][startY+1] == 0) && (board[startX-1][startY+1] == 0) &&
+			(board[startX-1][startY+2] == 0) && (board[startX-2][startY+2] == 0) && (board[startX-2][startY+3] == 0)) {
+		
+			valid = true;
+		}
+		else
+			valid = false;
+		}			
+					
+		if(valid) {
+			board[startX][startY] = 2;
+			board[startX][startY+1] = 2;
+			board[startX-1][startY+1] = 2;
+			board[startX-1][startY+2] = 2;
+			board[startX-2][startY+2] = 2;
+			board[startX-2][startY+3] = 2;
+			
+		}
 		
 		
-		
+		newPuzzle.setBoard(board);
 		return newPuzzle;
 	}
+
 	
+
+
 	private boolean checkNullStart(int startX, int startY, Puzzle puzzle) {
 		boolean valid = true;
 		int height = puzzle.getHeight();
