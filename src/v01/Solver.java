@@ -62,6 +62,8 @@ public class Solver {
 		return newPuzzle;
 	}
 	
+	//piece2A
+	
 	private boolean checkNullStart(int startX, int startY, Puzzle puzzle) {
 		boolean valid = true;
 		int height = puzzle.getHeight();
