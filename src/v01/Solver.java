@@ -62,7 +62,17 @@ public class Solver {
 		return newPuzzle;
 	}
 	
-	//piece2A
+	private Puzzle placePiece2A(int startX, int startY, Puzzle puzzle) {
+		Puzzle newPuzzle = puzzle;
+		int[][] board = newPuzzle.getBoard();
+		boolean valid = true;
+		int height = puzzle.getHeight();
+		int width = puzzle.getWidth();
+		
+		
+		
+		return newPuzzle;
+	}
 	
 	private boolean checkNullStart(int startX, int startY, Puzzle puzzle) {
 		boolean valid = true;
