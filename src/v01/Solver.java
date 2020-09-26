@@ -63,7 +63,7 @@ public class Solver {
 	}
 	
 	/**
-	 * 
+	 * Checks to see if piece 4A can be 
 	 * 
 	 * @param startX
 	 * @param startY
