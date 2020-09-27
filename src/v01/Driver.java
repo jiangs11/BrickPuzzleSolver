@@ -3,17 +3,20 @@ package v01;
 public class Driver {
 
 	public static void main(String[] args) {
-		Puzzle puzzle2 = new Puzzle(6,6);
+		int height = 6;
+		int width = 6;
+		
+		Puzzle puzzle2 = new Puzzle(height,width);
 		Solver solver = new Solver();
 		
 		
 		puzzle2 = buildPuzzle2(puzzle2);
 		
-		int x = 0;
-		int y = 0;
+		int x = 3;
+		int y = 1;
 		
-		if(solver.checkPiece1(x,y, puzzle2))
-		{solver.placePiece1(x, y, puzzle2);}
+		if(solver.checkPiece4B(x,y, puzzle2))
+		{solver.placePiece4B(x, y, puzzle2);}
 		else {System.out.println("Invalid location to place piece.");}
 		
 		displayPuzzle(puzzle2);
