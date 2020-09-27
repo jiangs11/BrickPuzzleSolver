@@ -9,7 +9,7 @@ public class Driver {
 		
 		puzzle2 = buildPuzzle2(puzzle2);
 		
-		int x = 3;
+		int x = 1;
 		int y = 2;
 
 		if(solver.checkPiece4A(x,y, puzzle2))
