@@ -455,6 +455,277 @@ public class Solver {
 	}
 	
 	/**
+	 * Checks if piece 5A can fit into the puzzle.
+	 * 
+	 * @param startX The bottom left x index of the piece.
+	 * @param startY The bottom left y index of the piece.
+	 * @param puzzle The puzzle which has a piece being checked.
+	 * @return True if that is a valid location for the piece.
+	 */
+	public boolean checkPiece5A(int startX, int startY, Puzzle puzzle) {
+		int[][] board = puzzle.getBoard();
+		boolean valid = true;
+		int height = puzzle.getHeight();
+		int width = puzzle.getWidth();
+		int leftBound = startY;
+		int topBound = startX-1;
+		int rightBound = startY+4;
+		int bottomBound = startX;
+		
+		/* Check if the piece can be placed.
+		   1st check if the piece will ever go out of bounds. */
+		/* The x-axis width */
+		valid = checkBounds(leftBound, rightBound, width);
+		
+		/* The y-axis height */
+		if (valid) {
+			valid = checkBounds(topBound, bottomBound, height);
+		}
+				
+		/* 2nd check if the locations of the piece are occupied. */
+		if (valid) {
+			if ((board[startX][startY] == 0) && (board[startX][startY+1] == 0) && (board[startX][startY+2] == 0) && 
+			    (board[startX][startY+3] == 0) && (board[startX-1][startY+3] == 0) && (board[startX-1][startY+4] == 0)) {
+					valid = true;
+			}
+			else {
+				valid = false;
+			}
+		}
+		
+		return valid;
+	}
+	
+	
+	/**
+	 * Places piece 5A into the puzzle.
+	 * 
+	 * @param startX The bottom left x index of the piece.
+	 * @param startY The bottom left y index of the piece.
+	 * @param puzzle The puzzle which the piece is being added to.
+	 * @return Returns the puzzle which had a piece added to it.
+	 */
+	public Puzzle placePiece5A(int startX, int startY, Puzzle puzzle) {
+		Puzzle newPuzzle = puzzle;
+		int[][] board = newPuzzle.getBoard();
+
+		/* Place the piece. */
+		board[startX][startY] = 5;
+		board[startX][startY+1] = 5;
+		board[startX][startY+2] = 5;
+		board[startX][startY+3] = 5;
+		board[startX-1][startY+3] = 5;
+		board[startX-1][startY+4] = 5;
+
+		newPuzzle.setBoard(board);
+		return newPuzzle;
+	}
+	
+	
+	/**
+	 * Checks if piece 5B can fit into the puzzle.
+	 * 
+	 * @param startX The bottom right x index of the piece.
+	 * @param startY The bottom right y index of the piece.
+	 * @param puzzle The puzzle which has a piece being checked.
+	 * @return True if that is a valid location for the piece.
+	 */
+	public boolean checkPiece5B(int startX, int startY, Puzzle puzzle) {
+		int[][] board = puzzle.getBoard();
+		boolean valid = true;
+		int height = puzzle.getHeight();
+		int width = puzzle.getWidth();
+		int leftBound = startY;
+		int topBound = startX-1;
+		int rightBound = startY-4;
+		int bottomBound = startX;
+		
+		/* Check if the piece can be placed.
+		   1st check if the piece will ever go out of bounds. */
+		/* The x-axis width */
+		valid = checkBounds(leftBound, rightBound, width);
+		
+		/* The y-axis height */
+		if (valid) {
+			valid = checkBounds(topBound, bottomBound, height);
+		}	
+				
+		/* 2nd check if the locations of the piece are occupied. */
+		if (valid) {
+			if ((board[startX][startY] == 0) && (board[startX][startY-1] == 0) && (board[startX][startY-2] == 0) && 
+			    (board[startX][startY-3] == 0) && (board[startX-1][startY-3] == 0) && (board[startX-1][startY-4] == 0)) {
+					valid = true;
+			}
+			else {
+				valid = false;
+			}
+		}
+		
+		return valid;
+	}
+	
+	
+	/**
+	 * Places piece 5B into the puzzle.
+	 * 
+	 * @param startX The bottom right x index of the piece.
+	 * @param startY The bottom right y index of the piece.
+	 * @param puzzle The puzzle which the piece is being added to.
+	 * @return Returns the puzzle which had a piece added to it.
+	 */
+	public Puzzle placePiece5B(int startX, int startY, Puzzle puzzle) {
+		Puzzle newPuzzle = puzzle;
+		int[][] board = newPuzzle.getBoard();
+
+		/* Place the piece. */
+		board[startX][startY] = 5;
+		board[startX][startY-1] = 5;
+		board[startX][startY-2] = 5;
+		board[startX][startY-3] = 5;
+		board[startX-1][startY-3] = 5;
+		board[startX-1][startY-4] = 5;
+
+		newPuzzle.setBoard(board);
+		return newPuzzle;
+	}
+	
+	
+	/**
+	 * Checks if piece 5C can fit into the puzzle.
+	 * 
+	 * @param startX The bottom right x index of the piece.
+	 * @param startY The bottom right y index of the piece.
+	 * @param puzzle The puzzle which has a piece being checked.
+	 * @return True if that is a valid location for the piece.
+	 */
+	public boolean checkPiece5C(int startX, int startY, Puzzle puzzle) {
+		int[][] board = puzzle.getBoard();
+		boolean valid = true;
+		int height = puzzle.getHeight();
+		int width = puzzle.getWidth();
+		int leftBound = startY;
+		int topBound = startX-1;
+		int rightBound = startY-4;
+		int bottomBound = startX;
+		
+		/* Check if the piece can be placed.
+		   1st check if the piece will ever go out of bounds. */
+		/* The x-axis width */
+		valid = checkBounds(leftBound, rightBound, width);
+		
+		/* The y-axis height */
+		if (valid) {
+			valid = checkBounds(topBound, bottomBound, height);
+		}
+				
+		/* 2nd check if the locations of the piece are occupied. */
+		if (valid) {
+			if ((board[startX][startY] == 0) && (board[startX][startY-1] == 0) && (board[startX-1][startY-1] == 0) && 
+			    (board[startX-1][startY-2] == 0) && (board[startX-1][startY-3] == 0) && (board[startX-1][startY-4] == 0)) {
+					valid = true;
+			}
+			else {
+				valid = false;
+			}
+		}
+		
+		return valid;
+	}
+	
+	
+	/**
+	 * Places piece 5C into the puzzle.
+	 * 
+	 * @param startX The bottom right x index of the piece.
+	 * @param startY The bottom right y index of the piece.
+	 * @param puzzle The puzzle which the piece is being added to.
+	 * @return Returns the puzzle which had a piece added to it.
+	 */
+	public Puzzle placePiece5C(int startX, int startY, Puzzle puzzle) {
+		Puzzle newPuzzle = puzzle;
+		int[][] board = newPuzzle.getBoard();
+
+		/* Place the piece. */
+		board[startX][startY] = 5;
+		board[startX][startY-1] = 5;
+		board[startX-1][startY-1] = 5;
+		board[startX-1][startY-2] = 5;
+		board[startX-1][startY-3] = 5;
+		board[startX-1][startY-4] = 5;
+
+		newPuzzle.setBoard(board);
+		return newPuzzle;
+	}
+	
+	
+	/**
+	 * Checks if piece 5D can fit into the puzzle.
+	 * 
+	 * @param startX The bottom left x index of the piece.
+	 * @param startY The bottom left y index of the piece.
+	 * @param puzzle The puzzle which has a piece being checked.
+	 * @return True if that is a valid location for the piece.
+	 */
+	public boolean checkPiece5D(int startX, int startY, Puzzle puzzle) {
+		int[][] board = puzzle.getBoard();
+		boolean valid = true;
+		int height = puzzle.getHeight();
+		int width = puzzle.getWidth();
+		int leftBound = startY;
+		int topBound = startX-1;
+		int rightBound = startY+4;
+		int bottomBound = startX;
+		
+		/* Check if the piece can be placed.
+		   1st check if the piece will ever go out of bounds. */
+		/* The x-axis width */
+		valid = checkBounds(leftBound, rightBound, width);
+		
+		/* The y-axis height */
+		if (valid) {
+			valid = checkBounds(topBound, bottomBound, height);
+		}
+				
+		/* 2nd check if the locations of the piece are occupied. */
+		if (valid) {
+			if ((board[startX][startY] == 0) && (board[startX][startY+1] == 0) && (board[startX-1][startY+1] == 0) && 
+			    (board[startX-1][startY+2] == 0) && (board[startX-1][startY+3] == 0) && (board[startX-1][startY+4] == 0)) {
+					valid = true;
+			}
+			else {
+				valid = false;
+			}
+		}
+		
+		return valid;
+	}
+	
+	
+	/**
+	 * Places piece 5D into the puzzle.
+	 * 
+	 * @param startX The bottom left x index of the piece.
+	 * @param startY The bottom left y index of the piece.
+	 * @param puzzle The puzzle which the piece is being added to.
+	 * @return Returns the puzzle which had a piece added to it.
+	 */
+	public Puzzle placePiece5D(int startX, int startY, Puzzle puzzle) {
+		Puzzle newPuzzle = puzzle;
+		int[][] board = newPuzzle.getBoard();
+
+		/* Place the piece. */
+		board[startX][startY] = 5;
+		board[startX][startY+1] = 5;
+		board[startX-1][startY+1] = 5;
+		board[startX-1][startY+2] = 5;
+		board[startX-1][startY+3] = 5;
+		board[startX-1][startY+4] = 5;
+
+		newPuzzle.setBoard(board);
+		return newPuzzle;
+	}
+	
+	/**
 	 * Checks whether a line of cells is within a bounds or not. This can be
 	 * used for finding whether the x-axis of cells or the y-axis of cells in
 	 * a single line are within the designated boundary. The boundary will go 
