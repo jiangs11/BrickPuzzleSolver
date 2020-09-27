@@ -9,11 +9,12 @@ public class Driver {
 		
 		puzzle2 = buildPuzzle2(puzzle2);
 		
-		int x = 1;
-		int y = 2;
-
-		if(solver.checkPiece4A(x,y, puzzle2))
-		{solver.placePiece4A(x, y, puzzle2);}
+		int x = 0;
+		int y = 0;
+		
+		if(solver.checkPiece1(x,y, puzzle2))
+		{solver.placePiece1(x, y, puzzle2);}
+		else {System.out.println("Invalid location to place piece.");}
 		
 		displayPuzzle(puzzle2);
 	}

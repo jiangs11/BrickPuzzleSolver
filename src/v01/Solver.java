@@ -22,6 +22,58 @@ public class Solver {
 	}
 	
 	/**
+	 * Checks if piece 1 can fit into the puzzle.
+	 * 
+	 * @param startX The bottom left x index of the piece.
+	 * @param startY The bottom left y index of the piece.
+	 * @param puzzle The puzzle which has a piece being checked.
+	 * @return True if that is a valid location for the piece.
+	 */
+	public boolean checkPiece1(int startX, int startY, Puzzle puzzle) {
+		int[][] board = puzzle.getBoard();
+		boolean valid = true;
+		int height = puzzle.getHeight();
+		int width = puzzle.getWidth();
+		int x = startX;
+		int y = startY;
+		int leftBoundIndex = x;
+		int topBoundIndex = y;
+		int rightBoundIndex = x+5;
+		int botBoundIndex = y;
+		
+		/* Check if the piece can be placed.
+		   1st check if the piece will ever go out of bounds. */
+		/* The x-axis width */
+		valid = checkBounds(leftBoundIndex,rightBoundIndex,width);
+		
+		/* The y-axis height */
+		if(valid) {
+			valid = checkBounds(topBoundIndex,botBoundIndex,height);
+		}
+
+		/* 2nd check if the locations of the piece are occupied. */
+		if(valid) {
+			/* Left */
+			if((board[y][x] == 0) && 
+			/* Left + 1 */
+			(board[y][x+1] == 0) &&
+			/* Left + 2 */
+			(board[y][x+2] == 0) &&
+			/* Left + 3 */
+			(board[y][x+3] == 0) &&
+			/* Left + 4 */
+			(board[y][x+4] == 0) &&
+			/* Right */
+			(board[y][x+5] == 0)) {}
+			
+			else {
+				valid = false;
+			}
+		}
+		return valid;
+	}
+	
+	/**
 	 * Places piece 1 into the puzzle.
 	 * 
 	 * @param startX The bottom left x index of the piece.
@@ -29,38 +81,33 @@ public class Solver {
 	 * @param puzzle The puzzle which the piece is being added to.
 	 * @return Returns the puzzle which had a piece added to it.
 	 */
-	public Puzzle placePiece1(int startX, int startY, Puzzle puzzle) {
+	public Puzzle placePiece1(int startX, int startY, Puzzle puzzle)
+			throws IndexOutOfBoundsException {
 		Puzzle newPuzzle = puzzle;
 		int[][] board = newPuzzle.getBoard();
-		boolean valid = true;
-		int height = puzzle.getHeight();
-		int width = puzzle.getWidth();
-		
-		/* Check that the starting positions are not null. */
-		valid = checkNullStart(startX, startY, puzzle);
-		
-		/* Check if the piece can be placed. */
-		for(int i = startX; i < startX + 6 && valid; i++) {
-			/* Check for nulls. */
-			if(i >= width) {
-				valid = false;
-				break;
-			}
-			/* Check to see if the positions are not blocked. */
-			if(board[startY][i] != 0) {
-				valid = false;
-			}
-		}
-		
-		/* Place the piece. */
-		if(valid) {
-			for(int i = startX; i < startX + 6; i++) {
-				board[startY][i] = 1;
-			}
-		}
+		int x = startX;
+		int y = startY;
 
+		/* Place the piece. */
+		
+		/* Left */
+		board[y][x] = 1;
+		/* Left + 1 */
+		board[y][x+1] = 1;
+		/* Left + 2 */
+		board[y][x+2] = 1;
+		/* Left + 3 */
+		board[y][x+3] = 1;
+		/* Left + 4 */
+		board[y][x+4] = 1;
+		/* Right */
+		board[y][x+5] = 1;
+
+
+		newPuzzle.setBoard(board);
 		return newPuzzle;
 	}
+	
 	/**
 	 * 
 	 * @param startX
@@ -68,26 +115,20 @@ public class Solver {
 	 * @param puzzle
 	 * @return
 	 */
-	public Puzzle placePiece2A(int startX, int startY, Puzzle puzzle) {
+	public Puzzle placePiece2A(int startX, int startY, Puzzle puzzle)
+			throws IndexOutOfBoundsException {
 		Puzzle newPuzzle = puzzle;
 		int[][] board = newPuzzle.getBoard();
-		boolean valid = true;
-		
-		//checks if the piece can fit in the location
-		valid = checkPiece2A(startX, startY, puzzle);
 		
 		//places piece in that location
-		if(valid) {
-			board[startX][startY] = 2;
-			board[startX][startY+1] = 2;
-			board[startX-1][startY+1] = 2;
-			board[startX-1][startY+2] = 2;
-			board[startX-2][startY+2] = 2;
-			board[startX-2][startY+3] = 2;
-			
-		}
-		
-		
+
+		board[startX][startY] = 2;
+		board[startX][startY+1] = 2;
+		board[startX-1][startY+1] = 2;
+		board[startX-1][startY+2] = 2;
+		board[startX-2][startY+2] = 2;
+		board[startX-2][startY+3] = 2;
+
 		newPuzzle.setBoard(board);
 		return newPuzzle;
 	}
@@ -139,7 +180,8 @@ public class Solver {
 	 * @param puzzle
 	 * @return
 	 */
-	public Puzzle placePiece2B(int startX, int startY, Puzzle puzzle) {
+	public Puzzle placePiece2B(int startX, int startY, Puzzle puzzle)
+			throws IndexOutOfBoundsException {
 		Puzzle newPuzzle = puzzle;
 		int[][] board = newPuzzle.getBoard();
 		boolean valid = true;
@@ -203,6 +245,179 @@ public class Solver {
 		
 	}
 	
+	/**
+	 * Checks if piece 3A can fit into the puzzle.
+	 * 
+	 * @param startX The bottom left x index of the piece.
+	 * @param startY The bottom left y index of the piece.
+	 * @param puzzle The puzzle which has a piece being checked.
+	 * @return True if that is a valid location for the piece.
+	 */
+	public boolean checkPiece3A(int startX, int startY, Puzzle puzzle) {
+		int[][] board = puzzle.getBoard();
+		boolean valid = true;
+		int height = puzzle.getHeight();
+		int width = puzzle.getWidth();
+		int x = startX;
+		int y = startY;
+		int leftBoundIndex = x;
+		int topBoundIndex = y-1;
+		int rightBoundIndex = x+3;
+		int botBoundIndex = y;
+		
+		/* Check if the piece can be placed.
+		   1st check if the piece will ever go out of bounds. */
+		/* The x-axis width */
+		valid = checkBounds(leftBoundIndex,rightBoundIndex,width);
+		
+		/* The y-axis height */
+		if(valid) {
+			valid = checkBounds(topBoundIndex,botBoundIndex,height);
+		}
+
+		/* 2nd check if the locations of the piece are occupied. */
+		if(valid) {
+			/* Bottom left */
+			if((board[y][x] == 0) && 
+			/* Bottom Mid Left */
+			(board[y][x+1] == 0) &&
+			/* Bottom Mid Right */
+			(board[y][x+2] == 0) &&
+			/* Bottom Right */
+			(board[y][x+3] == 0) &&
+			/* Top left */
+			(board[y-1][x+1] == 0) &&
+			/* Top right */
+			(board[y-1][x+2] == 0)) {}
+			
+			else {
+				valid = false;
+			}
+		}
+		return valid;
+	}
+	
+	/**
+	 * Places piece 3A into the puzzle.
+	 * 
+	 * @param startX The bottom left x index of the piece.
+	 * @param startY The bottom left y index of the piece.
+	 * @param puzzle The puzzle which the piece is being added to.
+	 * @return Returns the puzzle which had a piece added to it.
+	 */
+	public Puzzle placePiece3A(int startX, int startY, Puzzle puzzle)
+			throws IndexOutOfBoundsException {
+		Puzzle newPuzzle = puzzle;
+		int[][] board = newPuzzle.getBoard();
+		int x = startX;
+		int y = startY;
+
+		/* Place the piece. */
+		
+		/* Bottom left */
+		board[y][x] = 3;
+		/* Bottom Mid Left */
+		board[y][x+1] = 3;
+		/* Bottom Mid Right */
+		board[y][x+2] = 3;
+		/* Bottom Right */
+		board[y][x+3] = 3;
+		/* Top left */
+		board[y-1][x+1] = 3;
+		/* Top right */
+		board[y-1][x+2] = 3;
+
+
+		newPuzzle.setBoard(board);
+		return newPuzzle;
+	}
+	
+	/**
+	 * Checks if piece 3B can fit into the puzzle.
+	 * 
+	 * @param startX The bottom left x index of the piece.
+	 * @param startY The bottom left y index of the piece.
+	 * @param puzzle The puzzle which has a piece being checked.
+	 * @return True if that is a valid location for the piece.
+	 */
+	public boolean checkPiece3B(int startX, int startY, Puzzle puzzle) {
+		int[][] board = puzzle.getBoard();
+		boolean valid = true;
+		int height = puzzle.getHeight();
+		int width = puzzle.getWidth();
+		int x = startX;
+		int y = startY;
+		int leftBoundIndex = x-1;
+		int topBoundIndex = y-1;
+		int rightBoundIndex = x+2;
+		int botBoundIndex = y;
+		
+		/* Check if the piece can be placed.
+		   1st check if the piece will ever go out of bounds. */
+		/* The x-axis width */
+		valid = checkBounds(leftBoundIndex,rightBoundIndex,width);
+		
+		/* The y-axis height */
+		if(valid) {
+			valid = checkBounds(topBoundIndex,botBoundIndex,height);
+		}
+
+		/* 2nd check if the locations of the piece are occupied. */
+		if(valid) {
+			/* Bottom Left */
+			if((board[y][x] == 0) && 
+			/* Bottom Right */
+			(board[y][x+1] == 0) &&
+			/* Top Left */
+			(board[y-1][x-1] == 0) &&
+			/* Top Mid Left */
+			(board[y-1][x] == 0) &&
+			/* Top Mid Right */
+			(board[y-1][x+1] == 0) &&
+			/* Top Right */
+			(board[y-1][x+2] == 0)) {}
+			
+			else {
+				valid = false;
+			}
+		}
+		return valid;
+	}
+	
+	/**
+	 * Places piece 3B into the puzzle.
+	 * 
+	 * @param startX The bottom left x index of the piece.
+	 * @param startY The bottom left y index of the piece.
+	 * @param puzzle The puzzle which the piece is being added to.
+	 * @return Returns the puzzle which had a piece added to it.
+	 */
+	public Puzzle placePiece3B(int startX, int startY, Puzzle puzzle) 
+			throws IndexOutOfBoundsException{
+		Puzzle newPuzzle = puzzle;
+		int[][] board = newPuzzle.getBoard();
+		int x = startX;
+		int y = startY;
+
+		/* Place the piece. */
+		
+		/* Bottom Left */
+		board[y][x] = 3;
+		/* Bottom Right */
+		board[y][x+1] = 3;
+		/* Top Left */
+		board[y-1][x-1] = 3;
+		/* Top Mid Left */
+		board[y-1][x] = 3;
+		/* Top Mid Right */
+		board[y-1][x+1] = 3;
+		/* Top Right */
+		board[y-1][x+2] = 3;
+
+
+		newPuzzle.setBoard(board);
+		return newPuzzle;
+	}
 	
 	/**
 	 * Checks if piece 4A can fit into the puzzle.
@@ -264,10 +479,10 @@ public class Solver {
 	 * @param puzzle The puzzle which the piece is being added to.
 	 * @return Returns the puzzle which had a piece added to it.
 	 */
-	public Puzzle placePiece4A(int startX, int startY, Puzzle puzzle) {
+	public Puzzle placePiece4A(int startX, int startY, Puzzle puzzle)
+			throws IndexOutOfBoundsException {
 		Puzzle newPuzzle = puzzle;
 		int[][] board = newPuzzle.getBoard();
-		boolean valid = true;
 		int x = startX;
 		int y = startY;
 
@@ -306,9 +521,9 @@ public class Solver {
 		int width = puzzle.getWidth();
 		int x = startX;
 		int y = startY;
-		int leftBoundIndex = x-1;
+		int leftBoundIndex = x;
 		int topBoundIndex = y-2;
-		int rightBoundIndex = x+1;
+		int rightBoundIndex = x+2;
 		int botBoundIndex = y;
 		
 		/* Check if the piece can be placed.
@@ -317,7 +532,9 @@ public class Solver {
 		valid = checkBounds(leftBoundIndex,rightBoundIndex,width);
 		
 		/* The y-axis height */
-		valid = checkBounds(topBoundIndex,botBoundIndex,height);
+		if(valid) {
+			valid = checkBounds(topBoundIndex,botBoundIndex,height);
+		}
 
 		/* 2nd check if the locations of the piece are occupied. */
 		if(valid) {
@@ -326,9 +543,9 @@ public class Solver {
 			/* Bottom right */
 			(board[y][x+1] == 0) &&
 			/* Mid left */
-			(board[y-1][x-1] == 0) &&
+			(board[y-1][x+1] == 0) &&
 			/* Mid right */
-			(board[y-1][x] == 0) &&
+			(board[y-1][x+2] == 0) &&
 			/* Top left */
 			(board[y-2][x] == 0) &&
 			/* Top right */
@@ -349,10 +566,10 @@ public class Solver {
 	 * @param puzzle The puzzle which the piece is being added to.
 	 * @return Returns the puzzle which had a piece added to it.
 	 */
-	public Puzzle placePiece4B(int startX, int startY, Puzzle puzzle) {
+	public Puzzle placePiece4B(int startX, int startY, Puzzle puzzle) 
+			throws IndexOutOfBoundsException {
 		Puzzle newPuzzle = puzzle;
 		int[][] board = newPuzzle.getBoard();
-		boolean valid = true;
 		int x = startX;
 		int y = startY;
 
@@ -363,9 +580,9 @@ public class Solver {
 		/* Bottom right */
 		board[y][x+1] = 4;
 		/* Mid left */
-		board[y-1][x-1] = 4;
+		board[y-1][x+1] = 4;
 		/* Mid right */
-		board[y-1][x] = 4;
+		board[y-1][x+2] = 4;
 		/* Top left */
 		board[y-2][x] = 4;
 		/* Top right */
@@ -376,19 +593,352 @@ public class Solver {
 		return newPuzzle;
 	}
 	
-	private boolean checkNullStart(int startX, int startY, Puzzle puzzle) {
+	/**
+	 * Checks if piece 5A can fit into the puzzle.
+	 * 
+	 * @param startX The bottom left x index of the piece.
+	 * @param startY The bottom left y index of the piece.
+	 * @param puzzle The puzzle which has a piece being checked.
+	 * @return True if that is a valid location for the piece.
+	 */
+	public boolean checkPiece5A(int startX, int startY, Puzzle puzzle) {
+		int[][] board = puzzle.getBoard();
 		boolean valid = true;
 		int height = puzzle.getHeight();
 		int width = puzzle.getWidth();
+		int x = startX;
+		int y = startY;
+		int leftBoundIndex = x;
+		int topBoundIndex = y-1;
+		int rightBoundIndex = x+4;
+		int botBoundIndex = y;
 		
-		/* Check that the starting positions are not null. */
-		if((startX < 0 || startY < 0) && 
-				(startY >= height ||
-						startX >= width)) {
-			valid = false;
+		/* Check if the piece can be placed.
+		   1st check if the piece will ever go out of bounds. */
+		/* The x-axis width */
+		valid = checkBounds(leftBoundIndex,rightBoundIndex,width);
+		
+		/* The y-axis height */
+		if(valid) {
+			valid = checkBounds(topBoundIndex,botBoundIndex,height);
 		}
-		
+
+		/* 2nd check if the locations of the piece are occupied. */
+		if(valid) {
+			/* Bottom left */
+			if((board[y][x] == 0) && 
+			/* Bottom Mid Left */
+			(board[y][x+1] == 0) &&
+			/* Bottom Mid Right */
+			(board[y][x+2] == 0) &&
+			/* Bottom Right */
+			(board[y][x+3] == 0) &&
+			/* Top left */
+			(board[y-1][x+3] == 0) &&
+			/* Top right */
+			(board[y-1][x+4] == 0)) {}
+			
+			else {
+				valid = false;
+			}
+		}
 		return valid;
+	}
+	
+	/**
+	 * Places piece 5A into the puzzle.
+	 * 
+	 * @param startX The bottom left x index of the piece.
+	 * @param startY The bottom left y index of the piece.
+	 * @param puzzle The puzzle which the piece is being added to.
+	 * @return Returns the puzzle which had a piece added to it.
+	 */
+	public Puzzle placePiece5A(int startX, int startY, Puzzle puzzle)
+			throws IndexOutOfBoundsException {
+		Puzzle newPuzzle = puzzle;
+		int[][] board = newPuzzle.getBoard();
+		int x = startX;
+		int y = startY;
+
+		/* Place the piece. */
+		
+		/* Bottom left */
+		board[y][x] = 5;
+		/* Bottom Mid Left */
+		board[y][x+1] = 5;
+		/* Bottom Mid Right */
+		board[y][x+2] = 5;
+		/* Bottom Right */
+		board[y][x+3] = 5;
+		/* Top left */
+		board[y-1][x+3] = 5;
+		/* Top right */
+		board[y-1][x+4] = 5;
+
+
+		newPuzzle.setBoard(board);
+		return newPuzzle;
+	}
+	
+	/**
+	 * Checks if piece 5B can fit into the puzzle.
+	 * 
+	 * @param startX The bottom left x index of the piece.
+	 * @param startY The bottom left y index of the piece.
+	 * @param puzzle The puzzle which has a piece being checked.
+	 * @return True if that is a valid location for the piece.
+	 */
+	public boolean checkPiece5B(int startX, int startY, Puzzle puzzle) {
+		int[][] board = puzzle.getBoard();
+		boolean valid = true;
+		int height = puzzle.getHeight();
+		int width = puzzle.getWidth();
+		int x = startX;
+		int y = startY;
+		int leftBoundIndex = x-1;
+		int topBoundIndex = y-1;
+		int rightBoundIndex = x+3;
+		int botBoundIndex = y;
+		
+		/* Check if the piece can be placed.
+		   1st check if the piece will ever go out of bounds. */
+		/* The x-axis width */
+		valid = checkBounds(leftBoundIndex,rightBoundIndex,width);
+		
+		/* The y-axis height */
+		if(valid) {
+			valid = checkBounds(topBoundIndex,botBoundIndex,height);
+		}
+
+		/* 2nd check if the locations of the piece are occupied. */
+		if(valid) {
+			/* Bottom left */
+			if((board[y][x] == 0) && 
+			/* Bottom Mid Left */
+			(board[y][x+1] == 0) &&
+			/* Bottom Mid Right */
+			(board[y][x+2] == 0) &&
+			/* Bottom Right */
+			(board[y][x+3] == 0) &&
+			/* Top left */
+			(board[y-1][x-1] == 0) &&
+			/* Top right */
+			(board[y-1][x] == 0)) {}
+			
+			else {
+				valid = false;
+			}
+		}
+		return valid;
+	}
+	
+	/**
+	 * Places piece 5B into the puzzle.
+	 * 
+	 * @param startX The bottom left x index of the piece.
+	 * @param startY The bottom left y index of the piece.
+	 * @param puzzle The puzzle which the piece is being added to.
+	 * @return Returns the puzzle which had a piece added to it.
+	 */
+	public Puzzle placePiece5B(int startX, int startY, Puzzle puzzle)
+			throws IndexOutOfBoundsException {
+		Puzzle newPuzzle = puzzle;
+		int[][] board = newPuzzle.getBoard();
+		int x = startX;
+		int y = startY;
+
+		/* Place the piece. */
+		
+		/* Bottom left */
+		board[y][x] = 5;
+		/* Bottom Mid Left */
+		board[y][x+1] = 5;
+		/* Bottom Mid Right */
+		board[y][x+2] = 5;
+		/* Bottom Right */
+		board[y][x+3] = 5;
+		/* Top left */
+		board[y-1][x-1] = 5;
+		/* Top right */
+		board[y-1][x] = 5;
+
+
+		newPuzzle.setBoard(board);
+		return newPuzzle;
+	}
+	
+	/**
+	 * Checks if piece 5C can fit into the puzzle.
+	 * 
+	 * @param startX The bottom left x index of the piece.
+	 * @param startY The bottom left y index of the piece.
+	 * @param puzzle The puzzle which has a piece being checked.
+	 * @return True if that is a valid location for the piece.
+	 */
+	public boolean checkPiece5C(int startX, int startY, Puzzle puzzle) {
+		int[][] board = puzzle.getBoard();
+		boolean valid = true;
+		int height = puzzle.getHeight();
+		int width = puzzle.getWidth();
+		int x = startX;
+		int y = startY;
+		int leftBoundIndex = x-3;
+		int topBoundIndex = y-1;
+		int rightBoundIndex = x+1;
+		int botBoundIndex = y;
+		
+		/* Check if the piece can be placed.
+		   1st check if the piece will ever go out of bounds. */
+		/* The x-axis width */
+		valid = checkBounds(leftBoundIndex,rightBoundIndex,width);
+		
+		/* The y-axis height */
+		if(valid) {
+			valid = checkBounds(topBoundIndex,botBoundIndex,height);
+		}
+
+		/* 2nd check if the locations of the piece are occupied. */
+		if(valid) {
+			/* Bottom left */
+			if((board[y][x] == 0) && 
+			/* Bottom right */
+			(board[y][x+1] == 0) &&
+			/* Top left */
+			(board[y-1][x-3] == 0) &&
+			/* Top middle left */
+			(board[y-1][x-2] == 0) &&
+			/* Top middle right */
+			(board[y-1][x-1] == 0) &&
+			/* Top right */
+			(board[y-1][x] == 0)) {}
+			
+			else {
+				valid = false;
+			}
+		}
+		return valid;
+	}
+	
+	/**
+	 * Places piece 5C into the puzzle.
+	 * 
+	 * @param startX The bottom left x index of the piece.
+	 * @param startY The bottom left y index of the piece.
+	 * @param puzzle The puzzle which the piece is being added to.
+	 * @return Returns the puzzle which had a piece added to it.
+	 */
+	public Puzzle placePiece5C(int startX, int startY, Puzzle puzzle)
+			throws IndexOutOfBoundsException {
+		Puzzle newPuzzle = puzzle;
+		int[][] board = newPuzzle.getBoard();
+		int x = startX;
+		int y = startY;
+
+		/* Place the piece. */
+		
+		/* Bottom left */
+		board[y][x] = 5;
+		/* Bottom right */
+		board[y][x+1] = 5;
+		/* Top left */
+		board[y-1][x-3] = 5;
+		/* Top middle left */
+		board[y-1][x-2] = 5;
+		/* Top middle right */
+		board[y-1][x-1] = 5;
+		/* Top right */
+		board[y-1][x] = 5;
+
+
+		newPuzzle.setBoard(board);
+		return newPuzzle;
+	}
+	
+	/**
+	 * Checks if piece 5D can fit into the puzzle.
+	 * 
+	 * @param startX The bottom left x index of the piece.
+	 * @param startY The bottom left y index of the piece.
+	 * @param puzzle The puzzle which has a piece being checked.
+	 * @return True if that is a valid location for the piece.
+	 */
+	public boolean checkPiece5D(int startX, int startY, Puzzle puzzle) {
+		int[][] board = puzzle.getBoard();
+		boolean valid = true;
+		int height = puzzle.getHeight();
+		int width = puzzle.getWidth();
+		int x = startX;
+		int y = startY;
+		int leftBoundIndex = x;
+		int topBoundIndex = y-1;
+		int rightBoundIndex = x+4;
+		int botBoundIndex = y;
+		
+		/* Check if the piece can be placed.
+		   1st check if the piece will ever go out of bounds. */
+		/* The x-axis width */
+		valid = checkBounds(leftBoundIndex,rightBoundIndex,width);
+		
+		/* The y-axis height */
+		if(valid) {
+			valid = checkBounds(topBoundIndex,botBoundIndex,height);
+		}
+
+		/* 2nd check if the locations of the piece are occupied. */
+		if(valid) {
+			/* Bottom left */
+			if((board[y][x] == 0) && 
+			/* Bottom right */
+			(board[y][x+1] == 0) &&
+			/* Top left */
+			(board[y-1][x+1] == 0) &&
+			/* Top middle left */
+			(board[y-1][x+2] == 0) &&
+			/* Top middle right */
+			(board[y-1][x+3] == 0) &&
+			/* Top right */
+			(board[y-1][x+4] == 0)) {}
+			
+			else {
+				valid = false;
+			}
+		}
+		return valid;
+	}
+	
+	/**
+	 * Places piece 5D into the puzzle.
+	 * 
+	 * @param startX The bottom left x index of the piece.
+	 * @param startY The bottom left y index of the piece.
+	 * @param puzzle The puzzle which the piece is being added to.
+	 * @return Returns the puzzle which had a piece added to it.
+	 */
+	public Puzzle placePiece5D(int startX, int startY, Puzzle puzzle)
+			throws IndexOutOfBoundsException {
+		Puzzle newPuzzle = puzzle;
+		int[][] board = newPuzzle.getBoard();
+		int x = startX;
+		int y = startY;
+
+		/* Place the piece. */
+		
+		/* Bottom left */
+		board[y][x] = 5;
+		/* Bottom right */
+		board[y][x+1] = 5;
+		/* Top left */
+		board[y-1][x+1] = 5;
+		/* Top middle left */
+		board[y-1][x+2] = 5;
+		/* Top middle right */
+		board[y-1][x+3] = 5;
+		/* Top right */
+		board[y-1][x+4] = 5;
+
+
+		newPuzzle.setBoard(board);
+		return newPuzzle;
 	}
 	
 	/**
