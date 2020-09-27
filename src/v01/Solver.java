@@ -230,36 +230,29 @@ public class Solver {
 		valid = checkBounds(leftBoundIndex,rightBoundIndex,width);
 		
 		/* The y-axis height */
-		valid = checkBounds(topBoundIndex,botBoundIndex,height);
+		if(valid) {
+			valid = checkBounds(topBoundIndex,botBoundIndex,height);
+		}
 
 		/* 2nd check if the locations of the piece are occupied. */
 		if(valid) {
 			/* Bottom left */
-			if(board[y][x] != 0) {
-				valid = false;
-			}
+			if((board[y][x] == 0) && 
 			/* Bottom right */
-			if(valid && board[y][x+1] != 0) {
-				valid = false;
-			}
+			(board[y][x+1] == 0) &&
 			/* Mid left */
-			if(valid && board[y-1][x-1] != 0) {
-				valid = false;
-			}
+			(board[y-1][x-1] == 0) &&
 			/* Mid right */
-			if(valid && board[y-1][x] != 0) {
-				valid = false;
-			}
+			(board[y-1][x] == 0) &&
 			/* Top left */
-			if(valid && board[y-2][x] != 0) {
-				valid = false;
-			}
+			(board[y-2][x] == 0) &&
 			/* Top right */
-			if(valid && board[y-2][x+1] != 0) {
+			(board[y-2][x+1] == 0)) {}
+			
+			else {
 				valid = false;
 			}
 		}
-		
 		return valid;
 	}
 	
@@ -313,53 +306,38 @@ public class Solver {
 		int width = puzzle.getWidth();
 		int x = startX;
 		int y = startY;
-		int leftBoundIndex = x;
+		int leftBoundIndex = x-1;
 		int topBoundIndex = y-2;
-		int rightBoundIndex = x+2;
+		int rightBoundIndex = x+1;
 		int botBoundIndex = y;
 		
 		/* Check if the piece can be placed.
 		   1st check if the piece will ever go out of bounds. */
 		/* The x-axis width */
-		for(int i = leftBoundIndex; valid && i < rightBoundIndex; i++) {
-			if(i < 0 || i >= width) {
-				valid = false;
-			}
-		}
+		valid = checkBounds(leftBoundIndex,rightBoundIndex,width);
+		
 		/* The y-axis height */
-		for(int i = topBoundIndex; valid && i < botBoundIndex; i++) {
-			if(i < 0 || i >= height) {
-				valid = false;
-			}
-		}
+		valid = checkBounds(topBoundIndex,botBoundIndex,height);
+
 		/* 2nd check if the locations of the piece are occupied. */
 		if(valid) {
 			/* Bottom left */
-			if(board[y][x] != 0) {
-				valid = false;
-			}
+			if((board[y][x] == 0) && 
 			/* Bottom right */
-			if(valid && board[y][x+1] != 0) {
-				valid = false;
-			}
+			(board[y][x+1] == 0) &&
 			/* Mid left */
-			if(valid && board[y-1][x-1] != 0) {
-				valid = false;
-			}
+			(board[y-1][x-1] == 0) &&
 			/* Mid right */
-			if(valid && board[y-1][x] != 0) {
-				valid = false;
-			}
+			(board[y-1][x] == 0) &&
 			/* Top left */
-			if(valid && board[y-2][x] != 0) {
-				valid = false;
-			}
+			(board[y-2][x] == 0) &&
 			/* Top right */
-			if(valid && board[y-2][x+1] != 0) {
+			(board[y-2][x+1] == 0)) {}
+			
+			else {
 				valid = false;
 			}
 		}
-		
 		return valid;
 	}
 	
@@ -427,7 +405,7 @@ public class Solver {
 	private boolean checkBounds(int lowerBounds, int upperBounds, int limit) {
 		boolean valid = true;
 		
-		for(int i = lowerBounds; valid && i < upperBounds; i++) {
+		for(int i = lowerBounds; valid && i <= upperBounds; i++) {
 			if(i < 0 || i >= limit) {
 				valid = false;
 			}
